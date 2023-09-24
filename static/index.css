@@ -1,0 +1,46 @@
+/* Style the jumbotron */
+.jumbotron {
+    background-image: url('images/banner-image.jpg');
+    background-size: cover;
+    color: #fff;
+    text-shadow: 0.25px 0.25px 0.25px #000;
+
+}
+
+.jumbotron .text-window {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 200px 0;
+}
+
+.jumbotron h1 {
+    font-weight: bold;
+}
+
+.jumbotron .lead {
+    margin: 25px 0;
+    font-size: 1.1rem;
+}
+
+.jumbotron hr {
+    border-color: #fff;
+}
+
+.jumbotron .btn {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.jumbotron .btn:hover {
+    background-color: #bb2d3b;
+    border-color: #b02a37;
+}
+
+.icon-advantage {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: 0 auto;
+}

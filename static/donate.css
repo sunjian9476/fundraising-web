@@ -1,0 +1,14 @@
+.banner {
+    background-image: url('images/banner-image.jpg');
+    background-size: cover;
+    color: #fff;
+    text-shadow: 0.25px 0.25px 0.25px #000;
+    padding: 60px 0;
+
+}
+
+.search-bar {
+    background-color: #343a40;
+    padding: 10px;
+}
+

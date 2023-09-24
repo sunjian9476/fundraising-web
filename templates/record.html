@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donate</title>
+    <link href="/static/bootstrap-5.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/common.css" rel="stylesheet">
+    <link href="/static/donate.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="banner">
+    <div class="container banner-text">
+        <h1>A little help will do</h1>
+    </div>
+</div>
+
+
+<div class="container mt-5 mb-5">
+    {% if event %}
+        <div class="event-detail">
+
+            <h2>{{ event.title }}</h2>
+
+            <p>{{ event.description }}</p>
+            <p>Amount Raised: ${{ amount_raised }}</p>
+            <p>Goal: ${{ event.goal }}</p>
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{ amount_raised }}" aria-valuemin="0"
+                     aria-valuemax="{{ event.goal }}" style="width: {{ amount_raised/event.goal*100 }}%">
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="donateButton" onclick="onDonateClick()">Donate Now</button>
+
+        </div>
+    {% endif %}
+</div>
+
+<div class="container mt-5 mb-5">
+    <h3>Donations</h3>
+
+    <ul>
+        {% for (donation, user) in donations %}
+            <li>
+                {{ user.name }}(
+                <a href="/donate/by_creator_id/{{ user.id }}">{{ user.username }}</a>
+                ) - ${{ donation.amount }} at {{ donation.donate_date }}
+            </li>
+        {% endfor %}
+    </ul>
+
+
+</div>
+
+<!-- Donation Modal -->
+<div class="modal fade" id="donateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="donateModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="donateModalLabel">Make a Donation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form method="POST" >
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Donation Amount</label>
+                        <input type="number" class="form-control" id="amount" name="amount" min="5" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Donate</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+
+<script src="/static/jquery/jquery-3.7.1.min.js"></script>
+<script src="/static/bootstrap-5.3.1-dist/js/bootstrap.min.js"></script>
+<script>
+    function onDonateClick() {
+        // Get modal element
+        let modal = document.getElementById('donateModal')
+        let donateModal = new bootstrap.Modal(modal)
+        donateModal.show()
+    }
+</script>
+<style>
+    .event-detail {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .event-detail h2 {
+        margin-top: 0;
+    }
+
+    .progress {
+        margin-bottom: 20px;
+    }
+
+</style>
+</body>
+</html>

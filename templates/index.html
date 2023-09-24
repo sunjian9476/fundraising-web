@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="/static/bootstrap-5.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/common.css" rel="stylesheet">
+    <link href="/static/index.css" rel="stylesheet">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="jumbotron">
+    <div class="text-window">
+        <h1 class="display-4">Welcome to our Charity!</h1>
+        <p class="lead">Help us make a difference by donating, volunteering, and spreading the word.</p>
+        <hr class="my-4">
+        <p>Together we can change lives for the better.</p>
+        <a class="btn btn-primary btn-lg" href="/contactus" role="button">Contact US</a>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <h2 style="text-align: center">Our Advantages</h2>
+</div>
+
+<!-- 3 Column Section -->
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/static/images/icon1.png" class="img-fluid icon-advantage">
+            <h3 class="mt-3">Your Donation Goes Further</h3>
+            <p>As a non-profit, the majority of your donation goes directly to our cause. Over 85% of every dollar
+                donated funds our programs.</p>
+        </div>
+
+        <div class="col-md-4">
+            <img src="/static/images/icon2.png" class="img-fluid icon-advantage">
+            <h3 class="mt-3">Tax Benefits</h3>
+            <p>Your donation is tax deductible, so you can lower your taxable income. We provide receipts for all
+                donations.</p>
+        </div>
+
+        <div class="col-md-4">
+            <img src="/static/images/icon3.png" class="img-fluid icon-advantage">
+            <h3 class="mt-3">Secure Donation Platform</h3>
+            <p>Our online donation platform is encrypted and secure, protecting your financial information. You can
+                donate with confidence.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <h2 style="text-align: center">Our Members</h2>
+</div>
+
+<div class="container mt-5 mb-5">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <img src="/static/images/member1.png" class="img-fluid rounded-circle mb-3">
+            <h4>Volunteer</h4>
+            <p>Our volunteers donate their time and talents to support our programs. We have over 100 active
+                volunteers.</p>
+        </div>
+
+        <div class="col-md-3">
+            <img src="/static/images/member2.png" class="img-fluid rounded-circle mb-3">
+            <h4>Donor</h4>
+            <p>Our loyal donors provide the financial support we need to operate. We have thousands of donors
+                worldwide.</p>
+        </div>
+
+        <div class="col-md-3">
+            <img src="/static/images/member3.png" class="img-fluid rounded-circle mb-3">
+            <h4>Staff Member</h4>
+            <p>Our staff members manage our operations and programs. We have a dedicated staff of 15 individuals.</p>
+        </div>
+
+        <div class="col-md-3">
+            <img src="/static/images/member4.png" class="img-fluid rounded-circle mb-3">
+            <h4>Board Member</h4>
+            <p>Our Board provides governance and oversight. Our 7 Board members contribute their expertise.</p>
+        </div>
+    </div>
+
+</div>
+
+{% include "footer.html" %}
+
+<script src="/static/jquery/jquery-3.7.1.min.js"></script>
+<script src="/static/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* Style the navigation bar */
+
+.navbar {
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #fff;
+}
+

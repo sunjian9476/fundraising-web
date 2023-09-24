@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link href="/static/bootstrap-5.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/common.css" rel="stylesheet">
+    <link href="/static/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1>Register</h1>
+            <div class="alert alert-danger" id="errorMsg" role="alert">
+            </div>
+            <form id="registerForm">
+                <div class="form-group mt-3">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter name">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="password-confirm">Confirm Password</label>
+                    <input type="password" class="form-control" id="password-confirm" placeholder="Confirm password">
+                </div>
+
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}
+
+<script src="/static/jquery/jquery-3.7.1.min.js"></script>
+<script src="/static/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $('#errorMsg').hide();
+    $('#registerForm').submit(function(e) {
+
+        e.preventDefault();
+
+        var formData = {
+            'name': $('#name').val(),
+            'username': $('#username').val(),
+            'email': $('#email').val(),
+            'password': $('#password').val(),
+            'password-confirm': $('#password-confirm').val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/auth/register',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    window.location.href = '/login';
+                } else {
+                    $('#errorMsg').text(response.error).show();
+                }
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

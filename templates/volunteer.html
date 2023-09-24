@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact US</title>
+    <link href="/static/bootstrap-5.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/common.css" rel="stylesheet">
+    <link href="/static/volunteer.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="banner">
+    <div class="container banner-text">
+        <h1>Become Volunteer</h1>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/static/images/volunteer1.png" class="icon-volunteer">
+            <h3 class="mt-4">Organize a Charity Drive</h3>
+            <p>Rally your community together for a charity fundraising event. Organize a walkathon, concert, gala dinner
+                or other event to raise money for a cause in need. Handle logistics, promotion and recruiting
+                volunteers.</p>
+        </div>
+
+        <div class="col-md-4">
+            <img src="/static/images/volunteer2.png" class="icon-volunteer">
+            <h3 class="mt-4">Lead a Nonprofit Team</h3>
+            <p>Use your leadership skills to motivate and guide a nonprofit's staff or volunteer team. Help set goals,
+                assign tasks and foster collaboration to accomplish the organization's mission.
+            </p>
+        </div>
+
+        <div class="col-md-4">
+            <img src="/static/images/volunteer3.png" class="icon-volunteer">
+            <h3 class="mt-4">Mentor Youth Volunteers
+
+            </h3>
+            <p>Share your knowledge to help train and inspire the next generation of volunteers. Serve as a mentor to
+                youth interested in community service. Teach valuable skills and highlight the impact of volunteering.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% if session['user_id'] %}
+    <div class="container mt-5 mb-5" style="text-align: center">
+        <form method="post">
+            {% if is_volunteer %}
+                <button type="button" class="btn btn-primary">You are already a volunteer</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary">Became a Volunteer</button>
+            {% endif %}
+        </form>
+    </div>
+{% endif %}
+
+
+<div class="container mb-5">
+    <h2>Our Volunteers</h2>
+    <div class="row">
+        {% for volunteer, join_date in volunteers %}
+            <div class="col-md-4">
+                <div class="volunteer-card">
+                    <div class="joint-user">{{ volunteer.name }} ({{ volunteer.email }})</div>
+                    <div class="joint-time">Joined on {{ join_date.strftime('%b %d, %Y') }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% include "footer.html" %}
+
+<script src="/static/jquery/jquery-3.7.1.min.js"></script>
+<script src="/static/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    .joint-user {
+        font-weight: bold;
+    }
+
+    .joint-time {
+        color: gray;
+    }
+</style>
+</body>
+</html>

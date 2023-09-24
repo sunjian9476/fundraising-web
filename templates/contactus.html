@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact US</title>
+    <link href="/static/bootstrap-5.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/common.css" rel="stylesheet">
+    <link href="/static/contactus.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="banner">
+    <div class="container banner-text">
+        <h1>Contact Us</h1>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <!-- Contact form -->
+
+            <form>
+
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" class="form-control" placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="Your phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" class="form-control" placeholder="Your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company:</label>
+                    <input type="text" id="company" class="form-control" placeholder="Your company">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" class="form-control" placeholder="Subject">
+                </div>
+
+                <div class="form-group">
+                    <label for="question">Question:</label>
+                    <textarea id="question" class="form-control" rows="5" placeholder="Your question"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+            </form>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <h2>Contact Information</h2>
+
+            <p>
+                <i class="fas fa-building"></i>
+                Our Company
+            </p>
+
+            <p>
+                <i class="fas fa-map-marker-alt"></i>
+                123 Main St, City, State 12345
+            </p>
+
+            <p>
+                <i class="fas fa-phone"></i>
+                (555) 555-1234
+            </p>
+
+            <p>
+                <i class="fas fa-envelope"></i>
+                email@example.com
+            </p>
+
+            <p>
+                <i class="fas fa-clock"></i>
+                Mon - Fri 9am - 5pm
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% include "footer.html" %}
+
+<script src="/static/jquery/jquery-3.7.1.min.js"></script>
+<script src="/static/bootstrap-5.3.1-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

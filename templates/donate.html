@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donate</title>
+    <link href="/static/bootstrap-5.3.1-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/common.css" rel="stylesheet">
+    <link href="/static/donate.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="banner">
+    <div class="container banner-text">
+        <h1>A little help will do</h1>
+    </div>
+</div>
+
+<div class="container" style="margin-top: -40px">
+    <form method="post" action="/donate">
+        <div class="search-bar ">
+            <div class="align-items-center row">
+                <div class="col-8 p-3">
+                    <i class="fas fa-search text-white"></i>
+                    <span class="text-white">All Events</span>
+                </div>
+                <div class="col-4 d-flex">
+                    <input class="form-control flex-fill" name="keyword" type="search" placeholder="Search"
+                           aria-label="Search">
+                    <button class="btn btn-success" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-8">
+            {% if session['user_id'] %}
+                <div class="mb-5">
+                    <button class="btn btn-primary" onclick="showDialog()">
+                        Create a fundraising
+                    </button>
+                </div>
+            {% endif %}
+            {% if events %}
+                <div class="row">
+                    {% for event in events %}
+                        <div class="col-md-6 event-col">
+                            <div class="event">
+                                <div class="event-content">
+                                    <div class="title"><a href="/donate/{{ event.id }}">{{ event.title }}</a>
+                                    </div>
+                                    <div class="description">{{ event.description }}</div>
+                                    <div class="goal"> ${{ event.goal }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+                <h1>No events</h1>
+            {% endif %}
+        </div>
+        <div class="col-4">
+            <h4>Leaderboard</h4>
+            <hr>
+
+            {% if leaders %}
+
+                {% for leader in leaders %}
+                    <div class="leader">
+                        <p>
+                            <a href="/donate/by_creator_id/{{ leader.id }}">{{ leader.name }}({{ leader.username }})</a>
+                        </p>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+
+                <div>No leaders yet!</div>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Create an Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Form -->
+                <form id="createEventForm" method="post" action="/donate_add">
+
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goal">Goal Amount</label>
+                        <input type="number" class="form-control" id="goal" name="goal">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_date">Start Date</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_date">End Date</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+{% include "footer.html" %}
+
+<script src="/static/jquery/jquery-3.7.1.min.js"></script>
+<script src="/static/bootstrap-5.3.1-dist/js/bootstrap.min.js"></script>
+<script>
+    function showDialog() {
+        var modal = document.getElementById('createEventModal');
+
+        // Show modal
+        modal.style.display = "block";
+
+        // Initialize bootstrap modal
+        $(modal).modal('show');
+    }
+
+
+    $(function () {
+
+
+    })
+
+</script>
+<style>
+
+    .event-col {
+        padding: 10px;
+    }
+
+    .event {
+        background-color: #f8f8f8;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .event-content {
+        padding: 20px;
+    }
+
+    .event .title {
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .event .description {
+        color: gray;
+    }
+
+    .event .goal {
+        font-weight: bold;
+        color: red;
+    }
+
+    .event a {
+        color: black;
+        text-decoration: none;
+    }
+
+    .event a:hover {
+        color: black;
+    }
+</style>
+</body>
+</html>
